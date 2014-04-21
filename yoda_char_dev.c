@@ -38,17 +38,3 @@ void __exit yoda_char_dev_exit(void)
 }
 
 module_exit(yoda_char_dev_exit);
-
-static int yoda_char_dev_open(struct inode *inode, struct file *file)
-{
-	printk(KERN_INFO "yoda_char_dev_open\n");
-	try_module_get(THIS_MODULE);
-	return 0;
-}
-
-static int yoda_char_dev_release(struct inode *inode, struct file *file)
-{
-	module_put(THIS_MODULE);
-	printk(KERN_INFO "yoda_char_dev_release\n");
-	return 0;
-}
