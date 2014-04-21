@@ -23,8 +23,8 @@ int __init yoda_char_dev_entry(void)
 	}
 	else
 	{
-		printk(KERN_INFO "Registered yodachardev at major number %d.\n", Major);
-		printk(KERN_INFO "Be sure to set up a device node via something like \"mknod /dev/yodachardev c %d 0\"\n", Major);
+		printk(KERN_INFO "Registered %s at major number %d.\n", DEVICE_NAME, Major);
+		printk(KERN_INFO "Be sure to set up a device node via something like \"mknod /dev/%s c %d 0\"\n", DEVICE_NAME, Major);
 		return 0;
 	}
 }
