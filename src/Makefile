@@ -1,6 +1,6 @@
-obj-m += yodadev.o
+obj-m += yodachardev.o
 
-yodadev-objs := yoda_char_dev_open.o yoda_char_dev_release.o yoda_char_dev_procfile_read.o yoda_char_dev.o
+yodachardev-objs := yoda_char_dev_open.o yoda_char_dev_release.o yoda_char_dev_procfile_read.o yoda_char_dev.o
 
 EXTRA_CFLAGS += -I$(PWD)/include -Wall -Werror
 
