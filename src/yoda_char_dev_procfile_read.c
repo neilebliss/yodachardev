@@ -2,13 +2,16 @@
 
 int yoda_char_dev_procfile_read(char *buffer, char **buffer_location, off_t offset, int buffer_length, int *eof, void *data)
 {
-	int ret = 0;
-	char *msg = "Do, or do not.  There is no try!";
+	int bytes_sent = 0;
+	static int message_sent_index = 0;
+	const char *msg = "Do, or do not.  There is no try!";
+	int msg_length = strlen(msg);
 	printk(KERN_INFO "%s trying to print via procfile...\n", DEVICE_NAME);
-	if (offset > 0)
+	if (offset > 0 && offset <= (msg_length - 1))
 	{
 		return 0;
 	}
-	ret = sprintf(buffer, msg);
-	return ret;
+	bytes_sent = snprintf(buffer, (msg_length - offset), msg + offset);
+	message_sent_index += bytes_sent;
+	return bytes_sent;
 }
