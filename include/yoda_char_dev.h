@@ -9,6 +9,7 @@ void yoda_char_dev_exit(void);
 int yoda_char_dev_open(struct inode *, struct file *);
 int yoda_char_dev_release(struct inode *, struct file *);
 int yoda_char_dev_procfile_read(char *, char **, off_t, int, int *, void *);
+int yoda_char_dev_procfile_write(struct file *file, const char __user *buffer, unsigned long count, void *data);
 long yoda_char_dev_ioctl(struct file *, unsigned int, unsigned long);
 char * get_output_message(void);
 void switch_output_message(void);

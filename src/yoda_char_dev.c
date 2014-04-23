@@ -31,7 +31,8 @@ int __init yoda_char_dev_entry(void)
 		return -ENOMEM;
 	}
 	proc_file->read_proc = yoda_char_dev_procfile_read;
-	proc_file->mode = S_IFREG | S_IRUGO;
+	proc_file->write_proc = yoda_char_dev_procfile_write;
+	proc_file->mode = S_IFREG | S_IRUGO | S_IWUGO;
 	proc_file->uid = 0;
 	proc_file->gid = 0;
 	proc_file->size = 37;
