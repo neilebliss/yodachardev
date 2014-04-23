@@ -7,10 +7,12 @@ MODULE_LICENSE("Dual MIT/GPL");
 static int Major;
 static struct file_operations fops = {
 	.open = yoda_char_dev_open,
-	.release = yoda_char_dev_release
+	.release = yoda_char_dev_release,
+	.unlocked_ioctl = yoda_char_dev_ioctl
 };
 
 struct proc_dir_entry *proc_file;
+static bool msg_a = true;
 
 int __init yoda_char_dev_entry(void)
 {
@@ -49,3 +51,20 @@ void __exit yoda_char_dev_exit(void)
 }
 
 module_exit(yoda_char_dev_exit);
+
+char* get_output_message(void)
+{
+	if (msg_a)
+	{
+		return "Looking for someone?\n";
+	}
+	else
+	{
+		return "Found someone you have!\n";
+	}
+}
+
+void switch_output_message(void)
+{
+	msg_a = !msg_a;
+}
